@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Terminal colours
 txtblk='\e[0;30m' # Black - Regular
 txtgraylight='\e[0;37m' # Light gray

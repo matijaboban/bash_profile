@@ -1,8 +1,10 @@
+#!/bin/bash
+
 ## set working dir
 bash_profile_wdir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )
 
 ## include dependencies
-source $bash_profile_wdir/terminal_colours
+source "$bash_profile_wdir/terminal_colours"
 
 ## parse current git branch in active folder, if exists
 parse_git_branch() {

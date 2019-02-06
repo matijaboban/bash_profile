@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ## functional shortcuts
 alias dul="du -ah --max-depth=1"
 alias tre="tree -ah"

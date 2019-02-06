@@ -1,2 +1,4 @@
+#!/bin/bash
+
 ## docker shortcuts
 alias dbea="docker exec -it Beets bash"
