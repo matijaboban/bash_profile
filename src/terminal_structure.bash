@@ -4,7 +4,7 @@
 bash_profile_wdir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )
 
 ## include dependencies
-source "$bash_profile_wdir/terminal_colours"
+source "$bash_profile_wdir/terminal_colours.bash"
 
 ## parse current git branch in active folder, if exists
 parse_git_branch() {
@@ -13,5 +13,6 @@ parse_git_branch() {
 
 
 ## Terminal structure
-export PS1="\[$txtgraydark\]Tower \[$txtred\]\A\[\e[m\] \[$txtgrn\]\w\[$txtylw\]\$(parse_git_branch)\[$txtred\] $ \[$txtrst\]"
+# export PS1="\[$txtgraydark\]3Doma \[$txtred\]\A\[\e[m\] \[$txtgrn\]\w\[$txtylw\]\$(parse_git_branch)\[$txtred\] $ \[$txtrst\]"
+export PS1="\[$txtred\]\A\[\e[m\] \[$txtgrn\]\w\[$txtylw\]\$(parse_git_branch)\[$txtred\] $ \[$txtrst\]"
 
