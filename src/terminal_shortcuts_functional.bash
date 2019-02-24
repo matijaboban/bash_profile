@@ -7,7 +7,7 @@ alias lsa="ls -AlhF"
 
 ## util
 alias c="clear"
-alias genpass="openssl rand -base64 20"
+alias genpass="bash $bash_profile_wdir/scripts/crypt.bash getPassword"
 alias untar="tar -zxvf "
 
 ## network
