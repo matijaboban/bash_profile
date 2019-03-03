@@ -21,3 +21,6 @@ alias ipeorg="bash $bash_profile_wdir/scripts/ip.bash getIpExternalOrg"
 alias ipi="bash $bash_profile_wdir/scripts/ip.bash getIpInternal"
 alias ping="ping -c 5"
 alias url_info="bash $bash_profile_wdir/scripts/get_url_info.bash $@"
+
+## benchmarks
+alias bench_netspeed="bash $bash_profile_wdir/scripts/benchmarks.bash benchmarkConnection $@"
