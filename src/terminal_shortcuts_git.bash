@@ -1,6 +1,9 @@
 #!/bin/bash
 
 ## git shortcuts
+alias gb='git branch --sort=-committerdate'
+alias gbs="git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
+alias gc='git commit -p'
 alias gd='git diff'
 alias gda='git diff HEAD'
 alias gits='git status' ## legacy
