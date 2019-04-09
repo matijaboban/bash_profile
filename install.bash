@@ -1,7 +1,15 @@
 #!/bin/bash
 
+## set working dir
+bash_profile_wdir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )
+
+
+## include dependencies
+source "$bash_profile_wdir/src/terminal_colours.bash"
+
+
 path_profile=~/.bash_profile
-path_install=~/.bash_profile_custom
+path_install=~/.bpcustom
 path_work=$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )
 
 # echo $path_work
@@ -17,12 +25,6 @@ fi
 ## copy content
 cp -fr $path_work/src/* $path_install
 
-
-
-## update shell prefix !!!!! if input
-
-
-
 ## include in base bash profile file, if not already included
 if [[ ! -n $(grep -x -F "source $path_install/profile.bash" $path_profile) ]]
 then
@@ -33,8 +35,10 @@ fi
 source "$path_profile"
 
 echo "Custom bash_profile install completed."
-echo "Re-login into shell or run source "$path_profile" to apply changes to current shell"
-# source ~/.bash_profile
+echo -e "Re-login into shell or run ${undcyn}source $path_profile${txtrst} to apply changes to current shell"
+
+
+## source ~/.bash_profile
 # grep -q -x -F 'include "/configs/projectname.conf"' foo.bar || echo 'include "/configs/projectname.conf"' >> foo.bar
 
 
