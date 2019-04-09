@@ -13,6 +13,16 @@ benchmarkConnection()
         exit 0
     fi
 
+    ## check that the speedtest is accesible
+    test_url='https://www.speedtest.net'
+    if [[ ! $(ping $test_url -c 1 | tail -1 | awk -F" " '{print $1}') =~ "round-trip" ]];
+    then
+        printf "Test url $test_url could not be reached, check your internet connection."
+        printf "\n\n"
+        exit 1
+    fi
+
+    ## run connection test
     speedtest-cli
 }
 
