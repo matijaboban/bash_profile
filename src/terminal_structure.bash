@@ -3,6 +3,9 @@
 ## set working dir
 bash_profile_wdir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )
 
+## set system prefix
+systemPrefix=''
+
 ## include dependencies
 source "$bash_profile_wdir/terminal_colours.bash"
 
@@ -14,5 +17,4 @@ parse_git_branch() {
 
 ## Terminal structure
 # export PS1="\[$txtgraydark\]3Doma \[$txtred\]\A\[\e[m\] \[$txtgrn\]\w\[$txtylw\]\$(parse_git_branch)\[$txtred\] $ \[$txtrst\]"
-export PS1="\[$txtred\]\A\[\e[m\] \[$txtgrn\]\w\[$txtylw\]\$(parse_git_branch)\[$txtred\] $ \[$txtrst\]"
-
+export PS1="\[$txtred\]\A\[\e[m\]$systemPrefix \[$txtgrn\]\w\[$txtylw\]\$(parse_git_branch)\[$txtred\] $ \[$txtrst\]"
