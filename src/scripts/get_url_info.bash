@@ -4,7 +4,7 @@
 bash_profile_wdir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )
 
 ## include dependencies
-source $bash_profile_wdir/../terminal_colours
+source "$bash_profile_wdir/../terminal_colours.bash"
 
 ## include formating variables
 #source ~/.scripts/inc/formating.sh

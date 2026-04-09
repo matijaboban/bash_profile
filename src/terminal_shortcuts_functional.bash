@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## functional shortcuts
-alias dul="du -h --max-depth=1"
+alias dul="du -h -d 1"
 alias tre="tree -ah"
 alias lsa="ls -AlhF"
 
@@ -10,17 +10,22 @@ alias c="clear"
 alias genpass="bash $bash_profile_wdir/scripts/crypt.bash getPassword"
 alias untar="tar -zxvf "
 
-## network
-alias ip="bash $bash_profile_wdir/scripts/get_ipinfo.bash $@"
-alias ipgeo="bash $bash_profile_wdir/scripts/get_ipgeo.bash $@"
-alias iporg="bash $bash_profile_wdir/scripts/get_iporg.bash $@"
-alias ipe="bash $bash_profile_wdir/scripts/ip.bash getIpExternal"
-alias ipeinfo="bash $bash_profile_wdir/scripts/ip.bash getIpExternalInfo"
-alias ipegeo="bash $bash_profile_wdir/scripts/ip.bash getIpExternalGeo"
-alias ipeorg="bash $bash_profile_wdir/scripts/ip.bash getIpExternalOrg"
-alias ipi="bash $bash_profile_wdir/scripts/ip.bash getIpInternal"
+## network (uses myip from scripts/myip.bash, loaded in profile.bash)
+ipinfo()  { myip info "$@"; }
+ip()      { myip info "$@"; }
+ipgeo()   { myip geo "$@"; }
+iporg()   { myip org "$@"; }
+ipe()     { myip; }
+ipeinfo() { myip info; }
+ipegeo()  { myip geo; }
+ipeorg()  { myip org; }
+ipi()     { myip local; }
 alias ping="ping -c 5"
-alias url_info="bash $bash_profile_wdir/scripts/get_url_info.bash $@"
+url_info() { bash "$bash_profile_wdir/scripts/get_url_info.bash" "$@"; }
 
 ## benchmarks
-alias bench_netspeed="bash $bash_profile_wdir/scripts/benchmarks.bash benchmarkConnection $@"
+bench_netspeed() { bash "$bash_profile_wdir/scripts/benchmarks.bash" benchmarkConnection "$@"; }
+
+## modern network tools (if installed)
+command -v mtr &>/dev/null && alias pingt='mtr --report --report-cycles 10'
+command -v httpie &>/dev/null || command -v http &>/dev/null && alias httpp='http --print=hHbB'

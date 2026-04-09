@@ -37,7 +37,7 @@ getIpInfo ()
         exit 1
     fi
 
-    echo $(curl -s ipinfo.io/$1) | python -m json.tool
+    echo $(curl -s ipinfo.io/$1) | _bp_json_fmt
 }
 
 getIpGeo ()
@@ -51,7 +51,7 @@ getIpGeo ()
         exit 1
     fi
 
-    echo $(curl -s ipinfo.io/$1/geo) | python -m json.tool
+    echo $(curl -s ipinfo.io/$1/geo) | _bp_json_fmt
 }
 
 getIpOrg ()
@@ -77,13 +77,13 @@ getIpExternal ()
 # Get external IP full info
 getIpExternalInfo ()
 {
-    echo $(getIpInfo $(getIpExternal)) | python -m json.tool
+    echo $(getIpInfo $(getIpExternal)) | _bp_json_fmt
 }
 
 # Get external IP geospatial info
 getIpExternalGeo ()
 {
-    echo $(getIpGeo $(getIpExternal)) | python -m json.tool
+    echo $(getIpGeo $(getIpExternal)) | _bp_json_fmt
 }
 
 # Get external IP organisation

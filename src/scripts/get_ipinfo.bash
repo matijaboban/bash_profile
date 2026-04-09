@@ -35,7 +35,7 @@ elif ! valid_ip $1; then
 fi
 
 
-echo $(curl -s ipinfo.io/$1) | python -m json.tool
+echo $(curl -s ipinfo.io/$1) | _bp_json_fmt
 
 # TODO check pything dep, check input var
 

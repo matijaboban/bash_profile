@@ -5,11 +5,14 @@
 # JetBrains project files
 .idea
 
-# NPM
+# NPM (legacy — no longer used)
 node_modules
+package-lock.json
 
-# Unit/feature testing
-test/_reports
-
-## TODO
-build/compiled/*.sh
+# Claude Code / MCP
+**/.claude/
+!/.claude/
+/.claude/**/*.local.json
+**/.claude-flow/
+**/.swarm/
+**/memory

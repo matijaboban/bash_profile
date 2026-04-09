@@ -1,0 +1,83 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  shellcheck:
+    name: ShellCheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ShellCheck
+        run: sudo apt-get install -y shellcheck
+      - name: Lint shell scripts (new/modified)
+        run: |
+          shellcheck -s bash -x -S warning \
+            -e SC2034 -e SC1090 -e SC1091 -e SC2296 -e SC2128 \
+            -e SC2139 -e SC2154 \
+            src/profile.bash \
+            src/terminal_shortcuts_modern.bash \
+            src/terminal_shortcuts_git.bash \
+            src/terminal_shortcuts_docker.bash \
+            src/terminal_shortcuts_functional.bash \
+            src/terminal_shortcuts_structural.bash \
+            src/terminal_structure.bash \
+            src/scripts/myip.bash \
+            src/scripts/help.bash \
+            src/scripts/install_tools.bash \
+            install.bash
+      - name: Lint legacy scripts (relaxed)
+        run: |
+          shellcheck -s bash -S error \
+            -e SC2034 -e SC1090 -e SC1091 -e SC2296 -e SC2128 \
+            -e SC2139 -e SC2154 -e SC2086 -e SC2046 -e SC2005 \
+            -e SC2001 -e SC2004 -e SC2155 -e SC2206 -e SC2219 \
+            -e SC2016 -e SC2164 \
+            src/terminal_colours.bash \
+            src/scripts/benchmarks.bash \
+            src/scripts/crypt.bash \
+            src/scripts/ip.bash \
+            src/scripts/get_ipinfo.bash \
+            src/scripts/get_ipgeo.bash \
+            src/scripts/get_iporg.bash \
+            src/scripts/get_url_info.bash \
+            src/scripts/utils.bash \
+            src/scripts/utils_info.bash \
+            src/scripts/utils_string_transform.bash \
+            src/scripts/utils_url.bash \
+            src/scripts/_base.bash || true
+
+  syntax-check:
+    name: Bash Syntax Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check all .bash files parse
+        run: |
+          for f in src/*.bash src/scripts/*.bash install.bash; do
+            echo "Checking $f..."
+            bash -n "$f"
+          done
+
+  test-install:
+    name: Test Install
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run installer
+        run: bash install.bash
+      - name: Verify install
+        run: |
+          [ -d ~/.bpcustom ] || (echo "FAIL: ~/.bpcustom not created" && exit 1)
+          [ -f ~/.bpcustom/profile.bash ] || (echo "FAIL: profile.bash not copied" && exit 1)
+          echo "Install verified."
+      - name: Source profile in bash
+        run: |
+          bash -c 'source ~/.bpcustom/profile.bash && echo "Bash sourcing OK"'
