@@ -23,6 +23,7 @@ show_help() {
     echo "  dul         du -h --max-depth=1 (disk usage summary)"
     echo "  c           clear"
     echo "  untar       tar -zxvf (extract archive)"
+    command -v ouch &>/dev/null && echo "  ouch        universal compress/decompress (auto-detects format)"
     command -v eza &>/dev/null && echo "  ll          eza detailed listing with git status"
     command -v eza &>/dev/null && echo "  lt          eza tree view (2 levels)"
     command -v eza &>/dev/null && echo "  llt         eza detailed tree view"
@@ -34,6 +35,7 @@ show_help() {
     command -v fd &>/dev/null || command -v fdfind &>/dev/null && echo "  fdd         fd --type d (find directories)"
     command -v rg &>/dev/null && echo "  rgg         ripgrep smart-case search"
     command -v yazi &>/dev/null && echo "  yy          yazi file manager (cd's on exit)"
+    command -v broot &>/dev/null && echo "  broot       interactive tree navigator (br to cd on exit)"
     echo ""
 
     echo "--- Git ---"
@@ -143,6 +145,7 @@ show_help() {
     command -v yq &>/dev/null && echo "  yq          YAML/TOML processor"
     command -v tokei &>/dev/null && echo "  tokei       code line counter (200+ languages)"
     command -v glow &>/dev/null && echo "  glow        render markdown in terminal"
+    command -v navi &>/dev/null && echo "  navi        interactive cheatsheet browser"
     echo ""
 
     echo "--- Prompt ---"
