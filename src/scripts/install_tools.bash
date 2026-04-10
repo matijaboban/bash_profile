@@ -38,6 +38,9 @@ _bp_install_tools() {
         "onefetch:onefetch:git repo info card"
         "trip:trippy:network diagnostic TUI"
         "glow:glow:markdown viewer"
+        "navi:navi:interactive cheatsheet browser"
+        "broot:broot:interactive tree navigator"
+        "ouch:ouch:universal compress/decompress"
     )
 
     echo ""
