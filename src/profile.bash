@@ -48,6 +48,9 @@ _bp_source "$bash_profile_wdir/terminal_shortcuts_git.bash"
 ## include modern enhancements (only activates tools that are installed)
 _bp_source "$bash_profile_wdir/terminal_shortcuts_modern.bash"
 
+## include host/connection aliases
+_bp_source "$bash_profile_wdir/terminal_shortcuts_connect.bash"
+
 ## modern unified IP tool
 source "$bash_profile_wdir/scripts/myip.bash"
 
